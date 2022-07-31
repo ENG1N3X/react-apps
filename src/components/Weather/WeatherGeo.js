@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 import WeatherCard from "./WeatherCard"
 
 function WeatherGeo(props) {
-	const [result, setResult] = useState()
+	const [result, setResult] = useState(null)
 
 	// Get user location
-	useEffect(function () {
+	useEffect( () => {
 		fetch(`http://ip-api.com/json/?fields=status,message,city,lat,lon`)
 			.then((resp) => {
 				if (resp.status >= 200 && resp.status < 300) {

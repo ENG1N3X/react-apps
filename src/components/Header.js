@@ -1,17 +1,23 @@
 import React from "react"
+import { NavLink } from "react-router-dom"
 
-function Header(props) {
+function Header() {
+	const activeStyle = {
+		textDecoration: "underline",
+	}
 	return (
-		<header className="flex justify-center items-center py-8">
-			<a href="https://openweathermap.org/" target="_blank" rel="noreferrer" className="transition-opacity hover:opacity-80 px-3">
-				OpenWeather
-			</a>
-			<a href="https://ip-api.com/" target="_blank" rel="noreferrer" className="transition-opacity hover:opacity-80 px-3">
-				IP Geolocation API
-			</a>
-			<a href="https://reactjs.org/" target="_blank" rel="noreferrer" className="transition-opacity hover:opacity-80 px-3">
-				React
-			</a>
+		<header className="max-w-screen-lg mx-auto border-b border-white">
+			<nav className="text-center py-3">
+				<NavLink to="/" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+					Home
+				</NavLink>
+				<NavLink to="/weather" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+					Weather App
+				</NavLink>
+				<NavLink to="/routing" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+					Routing App
+				</NavLink>
+			</nav>
 		</header>
 	)
 }
