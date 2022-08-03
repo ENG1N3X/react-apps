@@ -17,6 +17,9 @@ function Header() {
 				<NavLink to="/routing" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
 					Routing App
 				</NavLink>
+				<NavLink to="/login" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+					Login
+				</NavLink>
 			</nav>
 		</header>
 	)
