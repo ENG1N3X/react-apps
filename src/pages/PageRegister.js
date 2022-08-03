@@ -4,17 +4,18 @@ import { Navigate } from "react-router-dom"
 import { AuthContext } from "../auth/AuthContext"
 
 const PageRegister = () => {
-	const { user, login } = useContext(AuthContext)
+	const { user, register } = useContext(AuthContext)
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault()
-		// const auth = {
-		// 	login: evt.target.login.value,
-		// 	password: evt.target.password.value,
-		// }
-		// login(auth, (status) => {
-		// 	console.log(status)
-		// })
+		const auth = {
+			login: evt.target.login.value,
+			password: evt.target.password.value,
+		}
+
+		register(auth, (status) => {
+			console.log(status)
+		})
 	}
 
 	if (user) {

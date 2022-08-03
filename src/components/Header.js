@@ -20,6 +20,9 @@ function Header() {
 				<NavLink to="/login" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
 					Login
 				</NavLink>
+				<NavLink to="/register" className="px-3" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+					Register
+				</NavLink>
 			</nav>
 		</header>
 	)

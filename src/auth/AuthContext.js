@@ -1,16 +1,18 @@
 import React, { createContext, useState } from "react"
-import users from "./users.json"
+import { useRecoilState } from "recoil"
+import { accountsState } from "../store/accountsState"
 
 export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
+	const [users, setUsers] = useRecoilState(accountsState)
 
 	const login = (newUser, callback) => {
 		let userFound = null
 
 		setTimeout(() => {
-			userFound = users.find((user) => user.login === newUser.login && user.passowrd === newUser.password)
+			userFound = users.find((user) => user.login === newUser.login && user.password === newUser.password)
 			if (!userFound) return callback("Login failed")
 
 			setUser(userFound)
@@ -23,7 +25,26 @@ export const AuthProvider = ({ children }) => {
 		callback("Logout success")
 	}
 
-	const data = { user, login, logout }
+	const register = (newUser, callback) => {
+		let userFound = null
+
+		setTimeout(() => {
+			userFound = users.find((user) => user.login === newUser.login)
+			if (userFound) return callback("Login already in use")
+
+			const newUserData = {
+				login: newUser.login,
+				password: newUser.password,
+			}
+
+			setUsers((oldValue) => [...oldValue, newUserData])
+			callback("Register success")
+
+			setUser(newUserData)
+		}, 1000)
+	}
+
+	const data = { user, login, logout, register }
 
 	return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>
 }
