@@ -1,12 +1,12 @@
 import React, { createContext, useState } from "react"
 import { useRecoilState } from "recoil"
-import { accountsState } from "../store/accountsState"
+import { userAtom } from "../store/authState"
 
 export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null)
-	const [users, setUsers] = useRecoilState(accountsState)
+	const [users, setUsers] = useRecoilState(userAtom)
 
 	const login = (newUser, callback) => {
 		let userFound = null

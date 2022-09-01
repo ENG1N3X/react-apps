@@ -1,12 +1,10 @@
-import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 
-import { AuthContext } from "./AuthContext"
+import { useRecoilValue } from "recoil"
+import { userSelector } from "../store/authState"
 
 const AuthMiddleware = ({ children }) => {
-	const data = useContext(AuthContext)
-
-	const { user } = data
+	const user = useRecoilValue(userSelector)
 
 	if (!user) {
 		return <Navigate to="/login" replace={true} />

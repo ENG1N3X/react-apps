@@ -1,20 +1,21 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Navigate } from "react-router-dom"
 
-import { AuthContext } from "../auth/AuthContext"
+import { useRecoilState } from "recoil"
+import { userSelector } from "../store/authState"
 
 const PageLogin = () => {
-	const { user, login } = useContext(AuthContext)
+	const [user, setUser] = useRecoilState(userSelector)
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault()
+
 		const auth = {
 			login: evt.target.login.value,
-			password: evt.target.password.value
+			password: evt.target.password.value,
 		}
-		login(auth, (status) => {
-			console.log(status)
-		})
+
+		setUser(auth)
 	}
 
 	if (user) {
